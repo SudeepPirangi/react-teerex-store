@@ -1,0 +1,9 @@
+.productCard {
+  padding: 5px;
+  border: 1px solid red;
+}
+
+.productImage {
+  height: auto;
+  width: 100%;
+}

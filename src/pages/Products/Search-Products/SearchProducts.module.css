@@ -1,0 +1,9 @@
+.searchBlock {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.searchProducts {
+  flex: 1;
+}

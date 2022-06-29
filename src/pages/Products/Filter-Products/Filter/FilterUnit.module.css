@@ -1,0 +1,4 @@
+.filterUnit {
+  display: flex;
+  flex-direction: column;
+}
