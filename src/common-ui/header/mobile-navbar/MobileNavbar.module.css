@@ -1,0 +1,32 @@
+.customNavbar {
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+}
+
+.customBrand {
+  font-size: 1.5em;
+}
+
+.navOptions {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navOptions > li {
+  float: left;
+  padding: 5px 0;
+  border: 1px solid var(--primary-text);
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.navOptions > li > a {
+  color: var(--primary-text);
+  text-decoration: none;
+}
+
+.faIcon {
+  margin: 0 10px;
+}

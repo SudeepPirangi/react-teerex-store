@@ -6,6 +6,7 @@ import Col from "rsuite/Col";
 import SearchProducts from "./Search-Products/SearchProducts";
 import FilterProducts from "./Filter-Products/FilterProducts";
 import Products from "./Products";
+import styles from "./Products.module.css";
 
 function ProductsContainer(): JSX.Element {
   const [showMobileFilter, setShowMobileFilter] = useState(false);
@@ -15,7 +16,7 @@ function ProductsContainer(): JSX.Element {
   };
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col xsHidden sm={8} md={6} lg={4} className="desktopFilters">
           <FilterProducts />
@@ -33,7 +34,7 @@ function ProductsContainer(): JSX.Element {
             </Row>
           ) : null}
 
-          <Row>
+          <Row className={styles.productsContainer}>
             <Products />
           </Row>
         </Col>

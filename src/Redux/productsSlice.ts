@@ -4,7 +4,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import filters from "../constants/filters-data";
 import IProduct from "../interfaces/IProduct";
 import searchProductsByTerm from "../helpers/searchProductsByTerm";
-import { applyFilters, setFilters, testingFunction } from "../helpers/filterHelpers";
+import { filterAllProducts, setFilters } from "../helpers/filterHelpers";
 
 const filteredProducts: IProduct[] = [];
 const unfilteredProducts: IProduct[] = [];
@@ -38,10 +38,11 @@ const productsSlice = createSlice({
       state.unfilteredProducts = [...unfilteredProducts];
     },
     filterProducts: (state, action: PayloadAction<any>) => {
-      let [products, filters] = applyFilters(action.payload);
-      testingFunction(state.filteredProducts, state.appliedfilters);
-      state.filteredProducts = [...products];
-      state.appliedfilters = filters;
+      let applyFilter = filterAllProducts(state.filteredProducts, state.unfilteredProducts);
+      let [filtered, unfiltered] = applyFilter(action.payload);
+      console.log("filterProducts", filtered.length, unfiltered.length);
+      state.filteredProducts = [...filtered];
+      state.unfilteredProducts = [...unfiltered];
     },
   },
 });

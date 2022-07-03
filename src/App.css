@@ -2,17 +2,72 @@
   text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+:root {
+  --primary-color: var(--rs-navbar-inverse-bg);
+  --secondary-color: var(--common-border);
+  --primary-text: #fff;
+  --regular-text: #000;
+  --common-border: #ccc;
+  --min-tab: 521px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.fullyCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 0px #ccc;
+}
+
+.vertical-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertically-away {
+  justify-content: space-between;
+}
+
+.space-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faIcon {
+  margin: 0 2px;
+}
+
+.mobile-display-nav .faIcon,
+.rs-drawer-body .faIcon {
+  margin: 0 10px;
+}
+
+.bigger-display-nav .faIcon {
+  margin-right: 5px;
+}
+
+/* over-riding default styles */
+.rs-divider-vertical {
+  margin: 0 8px;
+}
+.rs-drawer-body {
+  padding: 0;
+}
+.rs-drawer-header-close,
+.rs-drawer-title {
+  color: var(--primary-text);
+}
+
+/* tab devices */
+@media (min-width: 521px) {
+  .rs-divider-vertical {
+    margin: 0 12px;
   }
 }

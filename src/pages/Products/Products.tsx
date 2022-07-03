@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "rsuite/Button";
 import Col from "rsuite/Col";
 
-import { RootState } from "../../Redux/store";
-import { setProducts } from "../../Redux/productsSlice";
+import { RootState } from "../../redux/store";
+import { setProducts } from "../../redux/productsSlice";
 import IProduct from "../../interfaces/IProduct";
 import productsService from "../../services/productsService";
-import styles from "./Products.module.css";
+import Product from "./Product/Product";
 
 function Products(): JSX.Element {
   const products: IProduct[] = useSelector((state: RootState) => state.filteredProducts);
@@ -26,15 +25,8 @@ function Products(): JSX.Element {
       {products.length ? (
         products.map((product: IProduct): JSX.Element => {
           return (
-            <Col xs={24} sm={12} lg={8} xl={6} key={product.id} className={styles.productCard}>
-              <div className="productNameImage">
-                <span className="productName">{product.name}</span>
-                <img className={styles.productImage} src={product.imageURL} alt={product.name} />
-              </div>
-              <div className="product-details">
-                <span className="product-price">{product.price}</span>
-                <Button>Add to Cart</Button>
-              </div>
+            <Col xs={12} sm={12} md={8} lg={6} xl={4} key={product.id}>
+              <Product product={product} />
             </Col>
           );
         })

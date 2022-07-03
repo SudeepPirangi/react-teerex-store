@@ -1,0 +1,23 @@
+.productCard {
+  padding: 10px;
+  border: 1px solid var(--common-border);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px #ccc;
+  margin-bottom: 10px;
+}
+
+.productImage {
+  height: auto;
+  width: 100%;
+  border: 1px solid var(--common-border);
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.productDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

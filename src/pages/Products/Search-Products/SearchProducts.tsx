@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { Button, Col } from "rsuite";
 
 import debouncer from "../../../helpers/debouncer";
-import { searchProducts } from "../../../Redux/productsSlice";
+import { searchProducts } from "../../../redux/productsSlice";
 import { FilterIcon } from "../../../common-ui/FontAwesome";
 
 import styles from "./SearchProducts.module.css";

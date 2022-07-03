@@ -14,7 +14,7 @@ function RegularNavbar() {
 
   return (
     <Navbar appearance="inverse">
-      <Navbar.Brand {...navbarBrandProps}>RSUITE</Navbar.Brand>
+      <Navbar.Brand {...navbarBrandProps}>TEEREX STORE</Navbar.Brand>
       <Nav onSelect={setActiveKey} activeKey={activeKey}>
         <Nav.Item as={Link} to="/" eventKey="1" icon={<HomeIcon />}>
           Home
@@ -24,7 +24,7 @@ function RegularNavbar() {
         </Nav.Item>
       </Nav>
       <Nav pullRight>
-        <Nav.Item as={Link} to="/" eventKey="3" icon={<CartIcon />}>
+        <Nav.Item as={Link} to="/cart" eventKey="3" icon={<CartIcon />}>
           Cart
         </Nav.Item>
         <Nav.Menu icon={<UserIcon />} title="Username">

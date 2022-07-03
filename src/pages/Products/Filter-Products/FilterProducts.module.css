@@ -1,0 +1,14 @@
+.mobileFilter {
+  padding: 0 15px;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 1.3em;
+}
+
+.filtersGroup {
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 5px;
+}

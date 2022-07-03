@@ -23,63 +23,62 @@ export const updateFilters = (filters: IFilterMap, payload: any): IFilterMap => 
   return filters;
 };
 
-export const applyFilters = (store: any): [IProduct[], IFilterMap] => {
-  const { products, appliedFilters: filters } = store;
-  let filteredProducts: IProduct[] = [];
-  filteredProducts = colourFilter(products, filters.colour);
-  filteredProducts = genderFilter(filteredProducts, filters.gender);
-  filteredProducts = priceFilter(filteredProducts, filters.price);
-  filteredProducts = typeFilter(filteredProducts, filters.type);
-  return [filteredProducts, filters];
-};
+export const filterAllProducts = (filteredProducts: IProduct[], unfilteredProducts: IProduct[]): any => {
+  let filtered = [...filteredProducts];
+  let unfiltered = [...unfilteredProducts];
 
-const colourFilter = (products: IProduct[], colors: string[]): IProduct[] => {
-  if (!colors.length) return products;
-  let newProducts: IProduct[] = [];
-  colors.forEach((color: string) => {
-    let resultedProducts = products.filter((product: IProduct): boolean => product.color.toLowerCase() === color);
-    newProducts = [...newProducts, ...resultedProducts];
-  });
-  return newProducts;
-};
+  // inner helper function to apply/revoke filter of color, gender, type properties
+  const genericFilter = (filterId: string, optionId: string, isChecked: string): void => {
+    if (isChecked) {
+      filtered = filtered.filter((product: IProduct): boolean => {
+        let doesMatch: boolean = product[filterId].toLowerCase() === optionId;
+        if (!doesMatch) unfiltered.push(product);
+        return doesMatch;
+      });
+    } else {
+      unfiltered = unfiltered.filter((product: IProduct): boolean => {
+        let doesMatch: boolean = product[filterId].toLowerCase() === optionId;
+        if (!doesMatch) filtered.push(product);
+        return doesMatch;
+      });
+    }
+  };
 
-const genderFilter = (products: IProduct[], genders: string[]): IProduct[] => {
-  if (!genders.length) return products;
-  let newProducts: IProduct[] = [];
-  genders.forEach((gender: string) => {
-    let resultedProducts = products.filter((product: IProduct): boolean => product.gender.toLowerCase() === gender);
-    newProducts = [...newProducts, ...resultedProducts];
-  });
-  return newProducts;
-};
+  // inner helper function to apply/revoke filter of price properties
+  const priceFilter = (optionId: string, isChecked: string): void => {
+    let [min, max] = optionId.split("-");
+    let doesMatch = false;
+    if (isChecked) {
+      filtered = filtered.filter((product: IProduct): boolean => {
+        if (max === "X") {
+          doesMatch = +product.price >= +min;
+        } else {
+          doesMatch = +product.price >= +min && +product.price <= +max;
+        }
+        if (!doesMatch) unfiltered.push(product);
+        return doesMatch;
+      });
+    } else {
+      unfiltered = unfiltered.filter((product: IProduct): boolean => {
+        if (max === "X") {
+          doesMatch = +product.price >= +min;
+        } else {
+          doesMatch = +product.price >= +min && +product.price <= +max;
+        }
+        if (!doesMatch) filtered.push(product);
+        return doesMatch;
+      });
+    }
+  };
 
-const priceFilter = (products: IProduct[], priceRanges: string[]): IProduct[] => {
-  if (!priceRanges.length) return products;
-  let newProducts: IProduct[] = [];
-  priceRanges.forEach((range: string) => {
-    let [min, max] = range.split("-");
-    let resultedProducts = products.filter((product: IProduct): boolean => {
-      if (max === "X") {
-        return product.price >= +min;
-      }
-      return product.price >= +min && product.price <= +max;
-    });
-    newProducts = [...newProducts, ...resultedProducts];
-  });
-  return newProducts;
-};
-
-const typeFilter = (products: IProduct[], types: string[]): IProduct[] => {
-  if (!types.length) return products;
-  let newProducts: IProduct[] = [];
-  types.forEach((type: string) => {
-    let resultedProducts = products.filter((product: IProduct): boolean => product.type.toLowerCase() === type);
-    newProducts = [...newProducts, ...resultedProducts];
-  });
-  return newProducts;
-};
-
-export const testingFunction = (prods: IProduct[], filters: IFilterMap) => {
-  console.log("prods", prods);
-  console.log("filters", filters);
+  // a closure function returning manipulated products
+  return (filterObj: any): [IProduct[], IProduct[]] => {
+    let { filterId, optionId, isChecked } = filterObj;
+    if (filterId !== "price") {
+      genericFilter(filterId, optionId, isChecked);
+    } else {
+      priceFilter(optionId, isChecked);
+    }
+    return [filtered, unfiltered];
+  };
 };

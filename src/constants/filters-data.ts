@@ -1,6 +1,6 @@
 const filters = [
   {
-    filterId: "colour",
+    filterId: "color",
     filter: "Colour",
     options: [
       {

@@ -1,9 +1,7 @@
-.productCard {
+.productsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
   padding: 5px;
-  border: 1px solid red;
-}
-
-.productImage {
-  height: auto;
-  width: 100%;
 }

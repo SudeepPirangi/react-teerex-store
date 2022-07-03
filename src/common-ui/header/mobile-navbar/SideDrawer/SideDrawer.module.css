@@ -1,0 +1,33 @@
+.sideDrawer {
+  width: 80%;
+}
+
+.sideDrawerHeader {
+  background-color: var(--primary-color);
+  color: var(--primary-text);
+}
+
+.sideDrawer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sideDrawer ul > li:nth-child(1) {
+  border-top: 1px solid;
+}
+
+.sideDrawer ul > li {
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+
+.sideDrawer ul > li > a {
+  display: block;
+  color: var(--regular-text);
+  text-decoration: none;
+}
+
+.sideDrawer ul > li:hover {
+  background-color: var(--secondary-color);
+}
